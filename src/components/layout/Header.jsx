@@ -1,4 +1,3 @@
-import { clsx } from 'clsx';
 import { Bell, LogOut, Menu, Monitor, Moon, Search, Settings, Sun, User } from 'lucide-react';
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -47,7 +46,7 @@ export const Header = ({ onMenuClick }) => {
 
         {/* Right side */}
         <div className="flex items-center space-x-3">
-          {/* Theme switcher */}
+{/*           
           <div className="relative">
             <Button
               variant="ghost"
@@ -80,7 +79,7 @@ export const Header = ({ onMenuClick }) => {
                 })}
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Notifications */}
           <Button variant="ghost" size="sm" className="relative">
@@ -92,7 +91,7 @@ export const Header = ({ onMenuClick }) => {
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100  dark:hover:bg-gray-800 transition-colors duration-200"
             >
               <img
                 src={user?.avatar || 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop'}
@@ -110,7 +109,7 @@ export const Header = ({ onMenuClick }) => {
             </button>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
+              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-100 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
                 <a
                   href="#"
                   className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -120,7 +119,7 @@ export const Header = ({ onMenuClick }) => {
                 </a>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <Settings className="w-4 h-4 mr-3" />
                   Settings

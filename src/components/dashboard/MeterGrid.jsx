@@ -90,7 +90,7 @@ const MeterCard = ({ meter }) => {
                   ? 'text-success-600 dark:text-success-400' 
                   : 'text-gray-900 dark:text-white'
               }`}>
-                {meter.cost < 0 ? '+' : ''}${Math.abs(meter.cost).toLocaleString()}
+                {meter.cost < 0 ? '+' : ''}₹{Math.abs(meter.cost).toLocaleString()}
                 {meter.cost < 0 && ' (credit)'}
               </span>
             </div>

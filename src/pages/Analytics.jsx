@@ -5,14 +5,12 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
-  Line,
-  LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from 'recharts';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
@@ -178,7 +176,7 @@ export const Analytics = () => {
                   Total Cost
                 </p>
                 <p className="text-2xl font-bold text-warning-900 dark:text-warning-100">
-                  $4,300
+                  ₹4,300
                 </p>
                 <p className="text-sm text-warning-600 dark:text-warning-400 flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
@@ -293,7 +291,7 @@ export const Analytics = () => {
                   <span className={`font-semibold ${
                     item.amount < 0 ? 'text-success-600' : 'text-gray-900 dark:text-white'
                   }`}>
-                    ${Math.abs(item.amount).toLocaleString()}
+                    ₹{Math.abs(item.amount).toLocaleString()}
                     {item.amount < 0 && ' (credit)'}
                   </span>
                   <span className={`text-sm px-2 py-1 rounded-full ${

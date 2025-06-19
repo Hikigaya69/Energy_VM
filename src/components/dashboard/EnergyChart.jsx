@@ -19,7 +19,7 @@ export const EnergyChart = ({
   height = 400,
 }) => {
   const { data: energyData, isLoading } = useEnergyData();
-
+    console.log("Energy Data:", energyData);
   const formatXAxis = (tickItem) => {
     return format(parseISO(tickItem), 'MMM dd');
   };
@@ -79,8 +79,9 @@ export const EnergyChart = ({
         <CardTitle>Energy Consumption Trends</CardTitle>
       </CardHeader>
       <CardContent>
-        <div style={{ height }}>
-          <ResponsiveContainer width="100%" aspect={2}>
+        <div className="w-full h-[400px]">
+        
+          <ResponsiveContainer width="100%" height="100%">
 
             <ChartComponent data={energyData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <defs>
@@ -148,5 +149,8 @@ export const EnergyChart = ({
         </div>
       </CardContent>
     </Card>
+    
   );
+  
+
 };

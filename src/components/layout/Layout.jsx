@@ -7,14 +7,17 @@ export const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+   
+
+  <div className="min-h-90 flex  bg-gray-50 dark:bg-gray-900  ">
+  
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
-      <div className="lg:pl-64">
+      <div className="p-10  ml-10 m-0  ">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         
-        <main className="p-6">
-          <div className="max-w-7xl mx-auto">
+        <main className="p-6 ">
+          <div className="  bg-gray-50 dark:bg-gray-900 max-w-7xl mx-auto">
             <Outlet />
           </div>
         </main>

@@ -2,7 +2,7 @@ import { AlertTriangle, CheckCircle, Clock, Droplets, Edit, MoreVertical, Plus, 
 import React from 'react';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { useVirtualMeters } from '../hooks/useEnergyData';
 
 const meterIcons = {
@@ -118,7 +118,7 @@ const MeterCard = ({ meter }) => {
                       ? 'text-success-600 dark:text-success-400' 
                       : 'text-gray-900 dark:text-white'
                   }`}>
-                    {meter.cost < 0 ? '+' : ''}${Math.abs(meter.cost).toLocaleString()}
+                    {meter.cost < 0 ? '+' : ''}₹{Math.abs(meter.cost).toLocaleString()}
                     {meter.cost < 0 && ' (credit)'}
                   </span>
                 </div>

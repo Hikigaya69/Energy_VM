@@ -1,4 +1,4 @@
-import { Bell, Database, Globe, Lock, Mail, Palette, Save, Shield, User } from 'lucide-react';
+import { Bell, Database, Globe, Lock, Palette, Save, Shield, User } from 'lucide-react';
 import React from 'react';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
@@ -51,6 +51,7 @@ export const Settings = () => {
                   </label>
                   <select className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                     <option>USD ($)</option>
+                    <option>INR (₹)</option>
                     <option>EUR (€)</option>
                     <option>GBP (£)</option>
                   </select>

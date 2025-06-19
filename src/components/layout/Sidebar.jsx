@@ -63,7 +63,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
                   clsx(
                     'flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200',
                     isActive
-                      ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-200'
+                      ? 'bg-primary-100 text-primary-400 dark:bg-primary-900 dark:text-primary-200'
                       : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                   )
                 }

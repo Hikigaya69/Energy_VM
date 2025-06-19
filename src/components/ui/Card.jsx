@@ -16,7 +16,7 @@ export const Card = ({
   return (
     <div
       className={clsx(
-        'bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700',
+        'bg-white dark:bg-gray-700 rounded-xl shadow-sm border border-gray-200 dark:border-black',
         paddingClasses[padding],
         hover && 'hover:shadow-md transition-shadow duration-200',
         className
@@ -28,13 +28,13 @@ export const Card = ({
 };
 
 export const CardHeader = ({ children, className }) => (
-  <div className={clsx('border-b border-gray-200 dark:border-gray-700 pb-4 mb-4', className)}>
+  <div className={clsx('border-b border-gray-200 dark:border-gray-200 pb-4 mb-4', className)}>
     {children}
   </div>
 );
 
 export const CardTitle = ({ children, className }) => (
-  <h3 className={clsx('text-lg font-semibold text-gray-900 dark:text-white', className)}>
+  <h3 className={clsx('text-lg font-semibold text-gray-200 dark:text-white', className)}>
     {children}
   </h3>
 );

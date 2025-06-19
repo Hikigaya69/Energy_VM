@@ -1,9 +1,11 @@
-import { Activity, Bell, DollarSign, Gauge, TrendingDown, Zap } from 'lucide-react';
+import { Activity, Bell, Gauge, TrendingDown, Zap } from 'lucide-react';
+import { FaRupeeSign } from 'react-icons/fa';
 import { AlertsPanel } from '../components/dashboard/AlertsPanel';
 import { EnergyChart } from '../components/dashboard/EnergyChart';
 import { MeterGrid } from '../components/dashboard/MeterGrid';
 import { StatsCard } from '../components/dashboard/StatsCard';
 import { useDashboardStats } from '../hooks/useEnergyData';
+
 
 export const Dashboard = () => {
   const { data: stats, isLoading } = useDashboardStats();
@@ -63,7 +65,7 @@ export const Dashboard = () => {
           value={stats?.totalCost || 0}
           change={-12.5}
           trend="down"
-          icon={<DollarSign className="w-6 h-6" />}
+          icon={<FaRupeeSign className="w-6 h-6" />}
           color="success"
           format="currency"
         />
@@ -110,7 +112,7 @@ export const Dashboard = () => {
                 Savings This Month
               </h3>
               <p className="text-3xl font-bold text-success-700 dark:text-success-300 mb-2">
-                ${stats?.savingsThisMonth?.toLocaleString() || 0}
+                ₹{stats?.savingsThisMonth?.toLocaleString() || 0}
               </p>
               <p className="text-success-600 dark:text-success-400 font-medium">
                 15% better than last month

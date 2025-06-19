@@ -16,7 +16,7 @@ export const StatsCard = ({
     
     switch (format) {
       case 'currency':
-        return `$${val.toLocaleString()}`;
+        return `₹${val.toLocaleString()}`;
       case 'percentage':
         return `${val}%`;
       default:
