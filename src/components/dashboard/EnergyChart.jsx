@@ -25,6 +25,7 @@ export const EnergyChart = ({
     try {
       return format(parseISO(tickItem), 'MMM dd');
     } catch (error) {
+      console.error('Date parsing error:', error);
       return tickItem;
     }
   };
@@ -93,7 +94,6 @@ export const EnergyChart = ({
   }
 
   const ChartComponent = type === 'area' ? AreaChart : LineChart;
-  const DataComponent = type === 'area' ? Area : Line;
 
   return (
     <Card className="animate-slide-up">
@@ -121,19 +121,16 @@ export const EnergyChart = ({
                 strokeDasharray="3 3" 
                 stroke="#e5e7eb" 
                 strokeOpacity={0.5}
-                className="dark:stroke-gray-600"
               />
               <XAxis
                 dataKey="period"
                 tickFormatter={formatXAxis}
                 stroke="#6b7280"
                 fontSize={12}
-                className="dark:stroke-gray-400"
               />
               <YAxis 
                 stroke="#6b7280" 
                 fontSize={12}
-                className="dark:stroke-gray-400"
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend />

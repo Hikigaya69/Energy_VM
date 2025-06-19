@@ -107,8 +107,8 @@ const generateMockEnergyData = () => {
     
     data.push({
       period: date.toISOString().split('T')[0],
-      consumption: Math.floor(baseConsumption + (Math.random() - 0.5) * 100),
-      cost: Math.floor(baseCost + (Math.random() - 0.5) * 30),
+      consumption: Math.max(0, Math.floor(baseConsumption + (Math.random() - 0.5) * 100)),
+      cost: Math.max(0, Math.floor(baseCost + (Math.random() - 0.5) * 30)),
       efficiency: Math.floor(75 + Math.random() * 20),
     });
   }
