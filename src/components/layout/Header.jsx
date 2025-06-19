@@ -38,7 +38,7 @@ export const Header = ({ onMenuClick }) => {
               <input
                 type="text"
                 placeholder="Search meters, alerts..."
-                className="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border-0 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:bg-white dark:focus:bg-gray-700 transition-colors duration-200 w-64"
+                className="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border-0 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:bg-white dark:focus:bg-gray-700 transition-colors duration-200 w-64 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
           </div>
@@ -46,41 +46,6 @@ export const Header = ({ onMenuClick }) => {
 
         {/* Right side */}
         <div className="flex items-center space-x-3">
-{/*           
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowThemeMenu(!showThemeMenu)}
-            >
-              <ThemeIcon className="w-5 h-5" />
-            </Button>
-            
-            {showThemeMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
-                {['light', 'dark', 'system'].map((themeOption) => {
-                  const Icon = themeIcons[themeOption];
-                  return (
-                    <button
-                      key={themeOption}
-                      onClick={() => {
-                        setTheme(themeOption);
-                        setShowThemeMenu(false);
-                      }}
-                      className={clsx(
-                        'flex items-center w-full px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700',
-                        theme === themeOption && 'bg-gray-100 dark:bg-gray-700'
-                      )}
-                    >
-                      <Icon className="w-4 h-4 mr-3" />
-                      {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div> */}
-
           {/* Notifications */}
           <Button variant="ghost" size="sm" className="relative">
             <Bell className="w-5 h-5" />
@@ -91,7 +56,7 @@ export const Header = ({ onMenuClick }) => {
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100  dark:hover:bg-gray-800 transition-colors duration-200"
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
             >
               <img
                 src={user?.avatar || 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop'}
@@ -109,7 +74,7 @@ export const Header = ({ onMenuClick }) => {
             </button>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-100 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
+              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
                 <a
                   href="#"
                   className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -119,7 +84,7 @@ export const Header = ({ onMenuClick }) => {
                 </a>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <Settings className="w-4 h-4 mr-3" />
                   Settings

@@ -19,9 +19,14 @@ export const EnergyChart = ({
   height = 400,
 }) => {
   const { data: energyData, isLoading } = useEnergyData();
-    console.log("Energy Data:", energyData);
+  console.log("Energy Data:", energyData);
+
   const formatXAxis = (tickItem) => {
-    return format(parseISO(tickItem), 'MMM dd');
+    try {
+      return format(parseISO(tickItem), 'MMM dd');
+    } catch (error) {
+      return tickItem;
+    }
   };
 
   const CustomTooltip = ({ active, payload, label }) => {
@@ -43,7 +48,7 @@ export const EnergyChart = ({
                 </span>
               </div>
               <span className="text-sm font-medium text-gray-900 dark:text-white">
-                {entry.name === 'Cost' ? `$${entry.value}` : 
+                {entry.name === 'Cost' ? `₹${entry.value}` : 
                  entry.name === 'Efficiency' ? `${entry.value}%` : 
                  `${entry.value} kWh`}
               </span>
@@ -70,6 +75,23 @@ export const EnergyChart = ({
     );
   }
 
+  if (!energyData || energyData.length === 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Energy Consumption Trends</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-96 flex items-center justify-center">
+            <div className="text-center">
+              <p className="text-gray-500 dark:text-gray-400">No data available</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   const ChartComponent = type === 'area' ? AreaChart : LineChart;
   const DataComponent = type === 'area' ? Area : Line;
 
@@ -80,10 +102,11 @@ export const EnergyChart = ({
       </CardHeader>
       <CardContent>
         <div className="w-full h-[400px]">
-        
           <ResponsiveContainer width="100%" height="100%">
-
-            <ChartComponent data={energyData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <ChartComponent 
+              data={energyData} 
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
               <defs>
                 <linearGradient id="consumptionGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3} />
@@ -94,14 +117,24 @@ export const EnergyChart = ({
                   <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" strokeOpacity={0.5} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                stroke="#e5e7eb" 
+                strokeOpacity={0.5}
+                className="dark:stroke-gray-600"
+              />
               <XAxis
                 dataKey="period"
                 tickFormatter={formatXAxis}
                 stroke="#6b7280"
                 fontSize={12}
+                className="dark:stroke-gray-400"
               />
-              <YAxis stroke="#6b7280" fontSize={12} />
+              <YAxis 
+                stroke="#6b7280" 
+                fontSize={12}
+                className="dark:stroke-gray-400"
+              />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
               
@@ -149,8 +182,5 @@ export const EnergyChart = ({
         </div>
       </CardContent>
     </Card>
-    
   );
-  
-
 };

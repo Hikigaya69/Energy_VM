@@ -101,11 +101,15 @@ const generateMockEnergyData = () => {
     const date = new Date(now);
     date.setDate(date.getDate() - i);
     
+    // Generate more realistic data with some variation
+    const baseConsumption = 800 + Math.sin(i * 0.2) * 200;
+    const baseCost = 120 + Math.sin(i * 0.15) * 50;
+    
     data.push({
       period: date.toISOString().split('T')[0],
-      consumption: Math.floor(Math.random() * 500) + 800,
-      cost: Math.floor(Math.random() * 100) + 120,
-      efficiency: Math.floor(Math.random() * 20) + 75,
+      consumption: Math.floor(baseConsumption + (Math.random() - 0.5) * 100),
+      cost: Math.floor(baseCost + (Math.random() - 0.5) * 30),
+      efficiency: Math.floor(75 + Math.random() * 20),
     });
   }
   
@@ -131,7 +135,11 @@ export const useDashboardStats = () => {
 export const useEnergyData = (period = '30d') => {
   return useQuery({
     queryKey: ['energyData', period],
-    queryFn: () => Promise.resolve(generateMockEnergyData()),
+    queryFn: () => {
+      const data = generateMockEnergyData();
+      console.log('Generated energy data:', data);
+      return Promise.resolve(data);
+    },
     staleTime: 5 * 60 * 1000,
   });
 };
