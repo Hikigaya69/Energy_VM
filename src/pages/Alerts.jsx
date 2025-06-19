@@ -1,9 +1,9 @@
 import { formatDistanceToNow } from 'date-fns';
-import { AlertTriangle, Bell, CheckCircle, Clock, Filter, Info, Search, Settings, X } from 'lucide-react';
+import { AlertTriangle, Bell, CheckCircle, Clock, Info, Search, Settings, X } from 'lucide-react';
 import React from 'react';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { useAlerts } from '../hooks/useEnergyData';
 
 const alertIcons = {
@@ -165,10 +165,10 @@ export const Alerts = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
+                <p className="text-sm font-medium text-primary-600 dark:text-white">
                   Total Alerts
                 </p>
-                <p className="text-2xl font-bold text-primary-900 dark:text-primary-100">
+                <p className="text-2xl font-bold text-primary-900 dark:text-white">
                   {processedAlerts.length}
                 </p>
               </div>
@@ -183,10 +183,10 @@ export const Alerts = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-warning-600 dark:text-warning-400">
+                <p className="text-sm font-medium text-warning-600 dark:text-white">
                   Unread Alerts
                 </p>
-                <p className="text-2xl font-bold text-warning-900 dark:text-warning-100">
+                <p className="text-2xl font-bold text-warning-900 dark:text-white">
                   {unreadCount}
                 </p>
               </div>
@@ -201,10 +201,10 @@ export const Alerts = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-error-600 dark:text-error-400">
+                <p className="text-sm font-medium text-error-600 dark:text-white">
                   Critical Alerts
                 </p>
-                <p className="text-2xl font-bold text-error-900 dark:text-error-100">
+                <p className="text-2xl font-bold text-error-900 dark:text-white">
                   {criticalCount}
                 </p>
               </div>

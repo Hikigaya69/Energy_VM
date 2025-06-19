@@ -4,15 +4,14 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Layout } from './components/layout/Layout';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { Dashboard } from './pages/Dashboard';
-import { Login } from './pages/Login';
-import { VirtualMeters } from './pages/VirtualMeters';
-import { Analytics } from './pages/Analytics';
-import { Reports } from './pages/Reports';
 import { Alerts } from './pages/Alerts';
-import { Users } from './pages/Users';
-import { Settings } from './pages/Settings';
+import { Analytics } from './pages/Analytics';
+import { Dashboard } from './pages/Dashboard';
 import { Help } from './pages/Help';
+import { Login } from './pages/Login';
+import { Reports } from './pages/Reports';
+import { Settings } from './pages/Settings';
+import { VirtualMeters } from './pages/VirtualMeters';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,7 +45,7 @@ function App() {
                 <Route path="analytics" element={<Analytics />} />
                 <Route path="reports" element={<Reports />} />
                 <Route path="alerts" element={<Alerts />} />
-                <Route path="users" element={<Users />} />
+                {/* <Route path="users" element={<Users />} /> */}
                 <Route path="settings" element={<Settings />} />
                 <Route path="help" element={<Help />} />
               </Route>

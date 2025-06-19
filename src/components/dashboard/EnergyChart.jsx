@@ -1,4 +1,3 @@
-import { format, parseISO } from 'date-fns';
 import {
   Area,
   AreaChart,
@@ -18,49 +17,49 @@ export const EnergyChart = ({
   height = 400,
 }) => {
   const { data: energyData, isLoading } = useEnergyData();
-  console.log("Energy Data:", energyData);
-  console.log("Sample Data Types:", energyData?.slice(0, 5));
+ // console.log("Energy Data:", energyData);
+  //console.log("Sample Data Types:", energyData?.slice(0, 5));
 
 
-  const formatXAxis = (tickItem) => {
-    try {
-      return format(parseISO(tickItem), 'MMM dd');
-    } catch (error) {
-      console.error('Date parsing error:', error);
-      return tickItem;
-    }
-  };
+  // const formatXAxis = (tickItem) => {
+  //   try {
+  //     return format(parseISO(tickItem), 'MMM dd');
+  //   } catch (error) {
+  //     console.error('Date parsing error:', error);
+  //     return tickItem;
+  //   }
+  // };
 
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">
-            {format(parseISO(label), 'MMMM dd, yyyy')}
-          </p>
-          {payload.map((entry, index) => (
-            <div key={index} className="flex items-center justify-between space-x-4">
-              <div className="flex items-center space-x-2">
-                <div
-                  className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: entry.color }}
-                />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {entry.name}
-                </span>
-              </div>
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
-                {entry.name === 'Cost' ? `₹${entry.value}` :
-                  entry.name === 'Efficiency' ? `${entry.value}%` :
-                    `${entry.value} kWh`}
-              </span>
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
+  // const CustomTooltip = ({ active, payload, label }) => {
+  //   if (active && payload && payload.length) {
+  //     return (
+  //       <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+  //         <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">
+  //           {format(parseISO(label), 'MMMM dd, yyyy')}
+  //         </p>
+  //         {payload.map((entry, index) => (
+  //           <div key={index} className="flex items-center justify-between space-x-4">
+  //             <div className="flex items-center space-x-2">
+  //               <div
+  //                 className="w-3 h-3 rounded-full"
+  //                 style={{ backgroundColor: entry.color }}
+  //               />
+  //               <span className="text-sm text-gray-600 dark:text-gray-400">
+  //                 {entry.name}
+  //               </span>
+  //             </div>
+  //             <span className="text-sm font-medium text-gray-900 dark:text-white">
+  //               {entry.name === 'Cost' ? `₹${entry.value}` :
+  //                 entry.name === 'Efficiency' ? `${entry.value}%` :
+  //                   `${entry.value} kWh`}
+  //             </span>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     );
+  //   }
+  //   return null;
+  // };
 
   if (isLoading) {
     return (

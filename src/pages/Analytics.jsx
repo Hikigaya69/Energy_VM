@@ -58,7 +58,7 @@ export const Analytics = () => {
                   {entry.name}
                 </span>
               </div>
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
+              <span className="text-sm font-medium text-white dark:text-white">
                 {entry.value} kWh
               </span>
             </div>
@@ -128,13 +128,13 @@ export const Analytics = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
+                <p className="text-sm font-medium text-primary-600 dark:text-white">
                   Total Consumption
                 </p>
-                <p className="text-2xl font-bold text-primary-900 dark:text-primary-100">
+                <p className="text-2xl font-bold text-primary-900 dark:text-white">
                   7,850 kWh
                 </p>
-                <p className="text-sm text-primary-600 dark:text-primary-400 flex items-center mt-1">
+                <p className="text-sm text-primary-600 dark:text-white flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   +5.2% vs last period
                 </p>
@@ -150,13 +150,13 @@ export const Analytics = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-success-600 dark:text-success-400">
+                <p className="text-sm font-medium text-success-600 dark:text-white">
                   Average Efficiency
                 </p>
-                <p className="text-2xl font-bold text-success-900 dark:text-success-100">
+                <p className="text-2xl font-bold text-success-900 dark:text-white">
                   86%
                 </p>
-                <p className="text-sm text-success-600 dark:text-success-400 flex items-center mt-1">
+                <p className="text-sm text-success-600 dark:text-white flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   +2.1% vs last period
                 </p>
@@ -172,13 +172,13 @@ export const Analytics = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-warning-600 dark:text-warning-400">
+                <p className="text-sm font-medium text-warning-600 dark:text-white">
                   Total Cost
                 </p>
-                <p className="text-2xl font-bold text-warning-900 dark:text-warning-100">
+                <p className="text-2xl font-bold text-warning-900 dark:text-white">
                   ₹4,300
                 </p>
-                <p className="text-sm text-warning-600 dark:text-warning-400 flex items-center mt-1">
+                <p className="text-sm text-warning-600 dark:text-white flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   -8.5% vs last period
                 </p>
@@ -194,13 +194,13 @@ export const Analytics = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-error-600 dark:text-error-400">
+                <p className="text-sm font-medium text-error-600 dark:text-white">
                   Peak Demand
                 </p>
-                <p className="text-2xl font-bold text-error-900 dark:text-error-100">
+                <p className="text-2xl font-bold text-error-900 dark:text-white">
                   1,850 kW
                 </p>
-                <p className="text-sm text-error-600 dark:text-error-400 flex items-center mt-1">
+                <p className="text-sm text-error-600 dark:text-white flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   +12.3% vs last period
                 </p>
@@ -297,7 +297,7 @@ export const Analytics = () => {
                   <span className={`text-sm px-2 py-1 rounded-full ${
                     item.percentage < 0 
                       ? 'bg-success-100 text-success-700 dark:bg-success-900/20 dark:text-success-400'
-                      : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                      : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
                   }`}>
                     {item.percentage > 0 ? '+' : ''}{item.percentage}%
                   </span>

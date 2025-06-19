@@ -6,7 +6,6 @@ import {
   HelpCircle,
   LayoutDashboard,
   Settings,
-  Users,
   Zap
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
@@ -17,7 +16,7 @@ const navigation = [
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
   { name: 'Reports', href: '/reports', icon: FileText },
   { name: 'Alerts', href: '/alerts', icon: Bell },
-  { name: 'Users', href: '/users', icon: Users },
+  // { name: 'Users', href: '/users', icon: Users },
   { name: 'Settings', href: '/settings', icon: Settings },
   { name: 'Help', href: '/help', icon: HelpCircle },
 ];
@@ -79,15 +78,13 @@ export const Sidebar = ({ isOpen, onClose }) => {
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-r from-success-400 to-primary-500 rounded-full flex items-center justify-center">
-                <span className="text-xs font-medium text-white">A</span>
+                <span className="text-xs font-medium text-white">H</span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                  Admin User
+                   Hikigaya
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                  System Online
-                </p>
+               
               </div>
               <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse-soft"></div>
             </div>

@@ -1,4 +1,4 @@
-import { Calendar, Download, FileText, Filter, Mail, Plus, Search } from 'lucide-react';
+import { Calendar, Download, FileText, Mail, Plus, Search } from 'lucide-react';
 import React from 'react';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
@@ -47,12 +47,12 @@ const mockReports = [
   },
 ];
 
-const reportTypes = {
-  summary: { color: 'primary', label: 'Summary' },
-  analysis: { color: 'success', label: 'Analysis' },
-  optimization: { color: 'warning', label: 'Optimization' },
-  compliance: { color: 'error', label: 'Compliance' },
-};
+// const reportTypes = {
+//   summary: { color: 'primary', label: 'Summary' },
+//   analysis: { color: 'success', label: 'Analysis' },
+//   optimization: { color: 'warning', label: 'Optimization' },
+//   compliance: { color: 'error', label: 'Compliance' },
+// };
 
 const statusTypes = {
   completed: { color: 'success', label: 'Completed' },
@@ -62,7 +62,7 @@ const statusTypes = {
 };
 
 const ReportCard = ({ report }) => {
-  const reportType = reportTypes[report.type];
+  // const reportType = reportTypes[report.type];
   const statusType = statusTypes[report.status];
 
   return (
@@ -71,12 +71,12 @@ const ReportCard = ({ report }) => {
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center space-x-3 mb-2">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white dark:text-white">
                 {report.name}
               </h3>
-              <Badge variant={reportType.color}>
+              {/* <Badge variant={reportType.color}>
                 {reportType.label}
-              </Badge>
+              </Badge> */}
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
               {report.description}
@@ -148,10 +148,10 @@ export const Reports = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 border-primary-200 dark:border-primary-700">
           <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-primary-900 dark:text-primary-100 mb-1">
+            <div className="text-2xl font-bold text-primary-900 dark:text-white mb-1">
               {mockReports.length}
             </div>
-            <div className="text-sm text-primary-600 dark:text-primary-400">
+            <div className="text-sm text-primary-600 dark:text-white">
               Total Reports
             </div>
           </CardContent>
@@ -159,10 +159,10 @@ export const Reports = () => {
 
         <Card className="bg-gradient-to-br from-success-50 to-success-100 dark:from-success-900/20 dark:to-success-800/20 border-success-200 dark:border-success-700">
           <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-success-900 dark:text-success-100 mb-1">
+            <div className="text-2xl font-bold text-success-900 dark:text-white mb-1">
               {mockReports.filter(r => r.status === 'completed').length}
             </div>
-            <div className="text-sm text-success-600 dark:text-success-400">
+            <div className="text-sm text-black dark:text-white">
               Completed
             </div>
           </CardContent>
@@ -170,10 +170,10 @@ export const Reports = () => {
 
         <Card className="bg-gradient-to-br from-warning-50 to-warning-100 dark:from-warning-900/20 dark:to-warning-800/20 border-warning-200 dark:border-warning-700">
           <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-warning-900 dark:text-warning-100 mb-1">
+            <div className="text-2xl font-bold text-warning-900 dark:text-white mb-1">
               {mockReports.filter(r => r.status === 'generating').length}
             </div>
-            <div className="text-sm text-warning-600 dark:text-warning-400">
+            <div className="text-sm text-warning-100 dark:text-white">
               In Progress
             </div>
           </CardContent>
@@ -181,10 +181,10 @@ export const Reports = () => {
 
         <Card className="bg-gradient-to-br from-error-50 to-error-100 dark:from-error-900/20 dark:to-error-800/20 border-error-200 dark:border-error-700">
           <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-error-900 dark:text-error-100 mb-1">
+            <div className="text-2xl font-bold text-error-900 dark:text-white mb-1">
               {mockReports.filter(r => r.status === 'failed').length}
             </div>
-            <div className="text-sm text-error-600 dark:text-error-400">
+            <div className="text-sm text-error-600 dark:text-white">
               Failed
             </div>
           </CardContent>
