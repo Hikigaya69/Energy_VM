@@ -4,12 +4,11 @@ import {
   AreaChart,
   CartesianGrid,
   Legend,
-  Line,
   LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from 'recharts';
 import { useEnergyData } from '../../hooks/useEnergyData';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
@@ -20,6 +19,8 @@ export const EnergyChart = ({
 }) => {
   const { data: energyData, isLoading } = useEnergyData();
   console.log("Energy Data:", energyData);
+  console.log("Sample Data Types:", energyData?.slice(0, 5));
+
 
   const formatXAxis = (tickItem) => {
     try {
@@ -49,9 +50,9 @@ export const EnergyChart = ({
                 </span>
               </div>
               <span className="text-sm font-medium text-gray-900 dark:text-white">
-                {entry.name === 'Cost' ? `₹${entry.value}` : 
-                 entry.name === 'Efficiency' ? `${entry.value}%` : 
-                 `${entry.value} kWh`}
+                {entry.name === 'Cost' ? `₹${entry.value}` :
+                  entry.name === 'Efficiency' ? `${entry.value}%` :
+                    `${entry.value} kWh`}
               </span>
             </div>
           ))}
@@ -102,80 +103,49 @@ export const EnergyChart = ({
       </CardHeader>
       <CardContent>
         <div className="w-full h-[400px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <ChartComponent 
-              data={energyData} 
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <defs>
-                <linearGradient id="consumptionGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="costGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid 
-                strokeDasharray="3 3" 
-                stroke="#e5e7eb" 
-                strokeOpacity={0.5}
-              />
-              <XAxis
-                dataKey="period"
-                tickFormatter={formatXAxis}
-                stroke="#6b7280"
-                fontSize={12}
-              />
-              <YAxis 
-                stroke="#6b7280" 
-                fontSize={12}
-              />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              
-              {type === 'area' ? (
-                <>
-                  <Area
-                    type="monotone"
-                    dataKey="consumption"
-                    stroke="#0ea5e9"
-                    strokeWidth={2}
-                    fill="url(#consumptionGradient)"
-                    name="Consumption"
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="cost"
-                    stroke="#f59e0b"
-                    strokeWidth={2}
-                    fill="url(#costGradient)"
-                    name="Cost"
-                  />
-                </>
-              ) : (
-                <>
-                  <Line
-                    type="monotone"
-                    dataKey="consumption"
-                    stroke="#0ea5e9"
-                    strokeWidth={2}
-                    name="Consumption"
-                    dot={{ fill: '#0ea5e9', strokeWidth: 2, r: 4 }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="cost"
-                    stroke="#f59e0b"
-                    strokeWidth={2}
-                    name="Cost"
-                    dot={{ fill: '#f59e0b', strokeWidth: 2, r: 4 }}
-                  />
-                </>
-              )}
-            </ChartComponent>
-          </ResponsiveContainer>
+          
+<ResponsiveContainer width="100%" height={400}>
+  <AreaChart
+    data={energyData}
+    margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+  >
+    <defs>
+      <linearGradient id="consumptionFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
+        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05} />
+      </linearGradient>
+      <linearGradient id="costFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="5%" stopColor="#f97316" stopOpacity={0.5} />
+        <stop offset="95%" stopColor="#f97316" stopOpacity={0.05} />
+      </linearGradient>
+    </defs>
+
+    <CartesianGrid strokeDasharray="3 3" stroke="#4b5563" />
+    <XAxis dataKey="period" stroke="#9ca3af" fontSize={12} />
+    <YAxis domain={['auto', 'auto']} stroke="#9ca3af" fontSize={12} />
+    <Tooltip />
+    <Legend />
+
+    <Area
+      type="monotone"
+      dataKey="consumption"
+      stroke="#3b82f6"
+      strokeWidth={2}
+      fill="url(#consumptionFill)"
+      name="Consumption"
+    />
+    <Area
+      type="monotone"
+      dataKey="cost"
+      stroke="#f97316"
+      strokeWidth={2}
+      fill="url(#costFill)"
+      name="Cost"
+    />
+  </AreaChart>
+</ResponsiveContainer>
+
+
         </div>
       </CardContent>
     </Card>

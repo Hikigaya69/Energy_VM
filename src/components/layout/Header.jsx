@@ -59,7 +59,7 @@ export const Header = ({ onMenuClick }) => {
               className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
             >
               <img
-                src={user?.avatar || 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop'}
+                src={user?.avatar || 'https://www.google.com/imgres?q=hikigaya%20profile%20pic&imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fyahari%2Fimages%2F2%2F21%2FPortal-hachiman.png%2Frevision%2Flatest%2Fscale-to-width%2F360%3Fcb%3D20141119202536&imgrefurl=https%3A%2F%2Foregairu.fandom.com%2Fwiki%2FHachiman_Hikigaya&docid=foquORfz5AEiQM&tbnid=nI2i7O18dmakeM&vet=12ahUKEwi-utuJ5fyNAxV8V2wGHaz1G-oQM3oECHcQAA..i&w=360&h=560&hcb=2&ved=2ahUKEwi-utuJ5fyNAxV8V2wGHaz1G-oQM3oECHcQAA'}
                 alt={user?.name}
                 className="w-8 h-8 rounded-full object-cover"
               />

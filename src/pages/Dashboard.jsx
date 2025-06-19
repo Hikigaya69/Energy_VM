@@ -108,13 +108,13 @@ export const Dashboard = () => {
               <TrendingDown className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-success-900 dark:text-success-100 mb-1">
+              <h3 className="text-xl font-bold text-white dark:text-white mb-1">
                 Savings This Month
               </h3>
-              <p className="text-3xl font-bold text-success-700 dark:text-success-300 mb-2">
+              <p className="text-3xl font-bold  text-white dark:text-white mb-2">
                 ₹{stats?.savingsThisMonth?.toLocaleString() || 0}
               </p>
-              <p className="text-success-600 dark:text-success-400 font-medium">
+              <p className=" text-white dark:text-white font-medium">
                 15% better than last month
               </p>
             </div>
@@ -125,16 +125,16 @@ export const Dashboard = () => {
           <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary-300/30 rounded-full blur-xl"></div>
           <div className="relative flex items-center space-x-6">
             <div className="p-4 bg-primary-600 rounded-2xl shadow-lg">
-              <Bell className="w-8 h-8 text-white" />
+              <Bell className="w-8 h-8 text-black dark:text-white"  />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-primary-900 dark:text-primary-100 mb-1">
+              <h3 className="text-xl font-bold text-primary-600 dark:text-white mb-1">
                 System Status
               </h3>
-              <p className="text-3xl font-bold text-primary-700 dark:text-primary-300 mb-2">
+              <p className="text-3xl font-bold text-primary-600 dark:text-white mb-2">
                 All Systems Optimal
               </p>
-              <p className="text-primary-600 dark:text-primary-400 font-medium">
+              <p className="text-primary-600 dark:text-white font-medium">
                 {stats?.alerts || 0} active alerts
               </p>
             </div>
