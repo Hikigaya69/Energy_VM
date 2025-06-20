@@ -11,6 +11,7 @@ import { Help } from './pages/Help';
 import { Login } from './pages/Login';
 import { Reports } from './pages/Reports';
 import { Settings } from './pages/Settings';
+import { TestTagValues } from './pages/TestTagValues';
 import { VirtualMeters } from './pages/VirtualMeters';
 
 const queryClient = new QueryClient({
@@ -48,6 +49,8 @@ function App() {
                 {/* <Route path="users" element={<Users />} /> */}
                 <Route path="settings" element={<Settings />} />
                 <Route path="help" element={<Help />} />
+                <Route path="test" element={<TestTagValues />} />
+
               </Route>
             </Routes>
           </Router>
