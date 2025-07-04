@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface User {
   id: string;
   email: string;
@@ -34,6 +36,7 @@ export interface Threshold {
 }
 
 export interface Alert {
+  tagId: ReactNode;
   id: string;
   type: 'warning' | 'error' | 'info';
   title: string;

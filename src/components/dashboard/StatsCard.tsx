@@ -11,6 +11,7 @@ interface StatsCardProps {
   icon: ReactNode;
   color?: 'primary' | 'success' | 'warning' | 'error';
   format?: 'number' | 'currency' | 'percentage';
+  currencySymbol?: string;
 }
 
 export const StatsCard = ({
@@ -21,19 +22,21 @@ export const StatsCard = ({
   icon,
   color = 'primary',
   format = 'number',
+  currencySymbol,
 }: StatsCardProps) => {
   const formatValue = (val: string | number): string => {
-    if (typeof val === 'string') return val;
-    
-    switch (format) {
-      case 'currency':
-        return `₹${val.toLocaleString()}`;
-      case 'percentage':
-        return `${val}%`;
-      default:
-        return val.toLocaleString();
-    }
-  };
+  if (typeof val === 'string') return val;
+
+  switch (format) {
+    case 'currency':
+      return `${currencySymbol ?? '₹'}${val.toLocaleString()}`;
+    case 'percentage':
+      return `${val}%`;
+    default:
+      return val.toLocaleString();
+  }
+};
+
 
   const trendIcons = {
     up: TrendingUp,

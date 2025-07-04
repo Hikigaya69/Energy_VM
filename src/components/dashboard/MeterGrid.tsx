@@ -131,7 +131,7 @@ export const MeterGrid = () => {
   return (
     <Card className="animate-slide-up">
       <CardHeader>
-        <CardTitle>Virtual Meters</CardTitle>
+        <CardTitle>Virtual Meters (Dummy)</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

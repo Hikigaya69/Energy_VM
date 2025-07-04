@@ -1,13 +1,60 @@
+
+
 import { Activity, Bell, Gauge, TrendingDown, Zap } from 'lucide-react';
-import { FaRupeeSign } from 'react-icons/fa';
+import { useEffect, useRef, useState } from 'react';
+import {
+  FaChevronDown,
+  FaDollarSign,
+  FaEuroSign,
+  FaRupeeSign,
+  FaYenSign,
+} from 'react-icons/fa';
+import { GiReceiveMoney } from 'react-icons/gi';
 import { AlertsPanel } from '../components/dashboard/AlertsPanel';
-import { EnergyChart } from '../components/dashboard/EnergyChart';
+import { EnergyChartECharts } from '../components/dashboard/EnergyChart';
 import { MeterGrid } from '../components/dashboard/MeterGrid';
 import { StatsCard } from '../components/dashboard/StatsCard';
 import { useDashboardStats } from '../hooks/useEnergyData';
+import { useMonthlySummary } from '../hooks/useMonthlySummary';
+
+const currencyMap = {
+  INR: { icon: FaRupeeSign, symbol: '₹', rate: 1 },
+  USD: { icon: FaDollarSign, symbol: '$', rate: 0.012 },
+  EUR: { icon: FaEuroSign, symbol: '€', rate: 0.011 },
+  JPY: { icon: FaYenSign, symbol: '¥', rate: 1.8 },
+  AED: { icon: GiReceiveMoney, symbol: 'د.إ', rate: 0.044 },
+  SAR: { icon: GiReceiveMoney, symbol: 'ر.س', rate: 0.045 },
+  KWD: { icon: GiReceiveMoney, symbol: 'د.ك', rate: 0.0036 },
+  BHD: { icon: GiReceiveMoney, symbol: '.د.ب', rate: 0.004 },
+  QAR: { icon: GiReceiveMoney, symbol: 'ر.ق', rate: 0.044 },
+  OMR: { icon: GiReceiveMoney, symbol: '﷼', rate: 0.004 },
+  EGP: { icon: GiReceiveMoney, symbol: 'ج.م', rate: 0.56 }
+};
+
+type Currency = keyof typeof currencyMap;
 
 export const Dashboard = () => {
   const { data: stats, isLoading } = useDashboardStats();
+  const { data: summary } = useMonthlySummary();
+
+  const [currency, setCurrency] = useState<Currency>('INR');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  const baseValue = summary?.totalCost || 0;
+  const { rate, symbol, icon: CurrencyIcon } = currencyMap[currency];
+  const convertedValue = baseValue * rate;
 
   if (isLoading) {
     return (
@@ -30,7 +77,7 @@ export const Dashboard = () => {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute -top-4 -right-4 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
         <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-success-400/20 rounded-full blur-2xl"></div>
-        
+
         <div className="relative flex items-center justify-between">
           <div className="flex-1">
             <h1 className="text-3xl font-bold mb-3 tracking-tight">
@@ -52,33 +99,65 @@ export const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard
           title="Total Consumption"
-          value={stats?.totalConsumption || 0}
-          change={-8.2}
-          trend="down"
+          value={summary?.totalConsumption || 0}
           icon={<Zap className="w-6 h-6" />}
           color="primary"
           format="number"
         />
+
         <StatsCard
           title="Monthly Cost"
-          value={stats?.totalCost || 0}
-          change={-12.5}
-          trend="down"
-          icon={<FaRupeeSign className="w-6 h-6" />}
+          value={`${symbol}${convertedValue.toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+          })}`}
+          icon={
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setShowDropdown((prev) => !prev)}
+                title={`Select Currency (${currency})`}
+                className="hover:opacity-80 transition flex items-center gap-1"
+              >
+                <CurrencyIcon className="w-6 h-6" />
+                <FaChevronDown className="w-3 h-3" />
+              </button>
+              {showDropdown && (
+                <div className="absolute top-10 z-50 right-0 bg-white dark:bg-white border border-gray-200 dark:border-gray-700 rounded-md shadow-md p-2 w-40 space-y-2">
+                  {(Object.keys(currencyMap) as Currency[]).map((cur) => {
+                    const { icon: Icon, symbol } = currencyMap[cur];
+                    return (
+                      <button
+                        key={cur}
+                        onClick={() => {
+                          setCurrency(cur);
+                          setShowDropdown(false);
+                        }}
+                        className={`flex items-center gap-2 w-full text-left px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                          currency === cur ? 'bg-gray-200 dark:bg-gray-700' : ''
+                        }`}
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span>{symbol} – {cur}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          }
           color="success"
           format="currency"
         />
+
         <StatsCard
-          title="Efficiency"
+          title="Efficiency (Dummy)"
           value={stats?.averageEfficiency || 0}
-          change={5.1}
-          trend="up"
           icon={<Gauge className="w-6 h-6" />}
           color="warning"
           format="percentage"
         />
+
         <StatsCard
-          title="Active Meters"
+          title="Active Meters (Dummy)"
           value={stats?.activeMeters || 0}
           icon={<Activity className="w-6 h-6" />}
           color="primary"
@@ -88,7 +167,7 @@ export const Dashboard = () => {
       {/* Charts Section */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         <div className="xl:col-span-2">
-          <EnergyChart />
+          <EnergyChartECharts />
         </div>
         <div>
           <AlertsPanel />
@@ -108,12 +187,12 @@ export const Dashboard = () => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-white dark:text-white mb-1">
-                Savings This Month
+                Savings This Month (Dummy)
               </h3>
-              <p className="text-3xl font-bold  text-white dark:text-white mb-2">
+              <p className="text-3xl font-bold text-white dark:text-white mb-2">
                 ₹{stats?.savingsThisMonth?.toLocaleString() || 0}
               </p>
-              <p className=" text-white dark:text-white font-medium">
+              <p className="text-white dark:text-white font-medium">
                 15% better than last month
               </p>
             </div>
@@ -124,11 +203,11 @@ export const Dashboard = () => {
           <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary-300/30 rounded-full blur-xl"></div>
           <div className="relative flex items-center space-x-6">
             <div className="p-4 bg-primary-600 rounded-2xl shadow-lg">
-              <Bell className="w-8 h-8 text-black dark:text-white"  />
+              <Bell className="w-8 h-8 text-black dark:text-white" />
             </div>
             <div>
               <h3 className="text-xl font-bold text-primary-600 dark:text-white mb-1">
-                System Status
+                System Status (Dummy)
               </h3>
               <p className="text-3xl font-bold text-primary-600 dark:text-white mb-2">
                 All Systems Optimal

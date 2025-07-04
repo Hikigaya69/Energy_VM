@@ -1,11 +1,13 @@
 import { clsx } from 'clsx';
 import {
+  BarChart2,
   BarChart3,
   Bell,
-  FileText,
-  HelpCircle,
+  Clock3,
   LayoutDashboard,
+  LineChart,
   Settings,
+  TrendingUp,
   Zap
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
@@ -16,14 +18,19 @@ interface NavigationItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
+//Check for lightts
+
 const navigation: NavigationItem[] = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Virtual Meters', href: '/meters', icon: Zap },
+  { name: 'Virtual Meters(Dummy)', href: '/meters', icon: Zap },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
-  { name: 'Reports', href: '/reports', icon: FileText },
+  //{ name: 'Reports(Dummy)', href: '/reports', icon: FileText },
   { name: 'Alerts', href: '/alerts', icon: Bell },
-  { name: 'Settings', href: '/settings', icon: Settings },
-  { name: 'Help', href: '/help', icon: HelpCircle },
+  { name: 'Settings(Dummy)', href: '/settings', icon: Settings },
+  { name: 'Plotting', href: '/plot', icon: BarChart2 },
+  { name: 'Shift-Wise Report', href: '/shift', icon: Clock3 },
+  { name: 'BenchMark Analysis', href: '/benchmark', icon: TrendingUp },
+  { name: 'Maxx Analysis', href: '/maxx', icon: LineChart }
 ];
 
 interface SidebarProps {
@@ -72,7 +79,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                   clsx(
                     'flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200',
                     isActive
-                      ? 'bg-primary-100 text-primary-400 dark:bg-primary-900 dark:text-primary-200'
+                      ? 'bg-primary-100 text-primary-100 dark:bg-primary-100 dark:text-white ring-2 ring-white'
                       : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                   )
                 }
@@ -92,9 +99,9 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                   Hikigaya
+                  Hikigaya
                 </p>
-               
+
               </div>
               <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse-soft"></div>
             </div>

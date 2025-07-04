@@ -35,6 +35,9 @@ export const Card = ({
   );
 };
 
+
+//monthlycost
+//dailycost with graph
 interface CardHeaderProps {
   children: ReactNode;
   className?: string;
